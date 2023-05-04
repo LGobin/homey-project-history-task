@@ -7,7 +7,7 @@
             = link_to project_history_path(project) do
               = project.name
         .project-description
-          = project.description
+          = project.description.html_safe
         .project-status
           Status: 
           %span.status
