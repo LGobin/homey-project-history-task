@@ -1,0 +1,24 @@
+- @projects.each do |project|
+  .container.m-auto.pt-9
+    .content#index
+      .project-info
+        .project-name
+          .name
+            = link_to project_history_path(project) do
+              = project.name
+        .project-description
+          = project.description
+        .project-status
+          Status: 
+          %span.status
+            = project.status
+        .project-data
+          .comments
+            %i.fa-solid.fa-comment
+            = project.comments.count
+          .status-changes
+            %i.fa-solid.fa-arrows-turn-to-dots
+            = project.status_changes.count
+          .people
+            %i.fa-solid.fa-person
+            = project.contributors

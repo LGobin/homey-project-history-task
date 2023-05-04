@@ -1,0 +1,169 @@
+@import "utilities/color_variables";
+
+.content{
+  font-family: sans-serif;
+  display: flex;
+  color: $font-color-primary;
+
+  .project-info{
+    width: 60%;
+    flex-direction: column;
+    background-color: white;
+    height: max-content;
+    padding: 25px;
+    margin: 0 20px 0 0;
+    border-radius: 20px;
+    box-shadow: lightgray 2px 1px;
+    
+    .project-name{
+      display: flex;
+      margin: 0 0 10px 0;
+      border-bottom: solid lightgray 1px;
+
+      .name{
+        width: 100%;
+        font-size: 26px;
+        font-weight: bold;
+      }
+
+      .edit-button{
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+
+        #pencil-icon{
+          padding: 10px;
+        }
+
+        #save-button{
+          display: none;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .project-description{
+      margin: 0 0 20px 0;
+      font-size: 17px;
+      color: $font-color-secondary;
+    }
+
+    .project-status{
+      font-size: 18px;
+
+      .status{
+        font-weight: bold;
+      }
+    }
+
+    .project-data{
+      margin: 10px 0 0 0;
+      display: flex;
+      justify-content: space-between
+    }
+
+    .comment{
+      text-align: center;
+
+      #comment_content{
+        width: 80%;
+        margin-top: 20px;
+        height: 60px;
+      }
+
+      .submit-button{
+        padding: 5px;
+        border-radius: 5px;
+        background-color: $primary-color;
+        width: 200px;
+        color:rgb(230, 230, 230);
+        margin-top: 10px;
+        font-weight: bold;
+        cursor: pointer;
+
+          &:hover{
+            background-color: $highlight-color;
+            color: white;
+          }
+
+          &:active{
+            background-color: $click-color
+          }
+      }
+    }
+  }
+
+  .history-container{
+    width: 40%;
+    background-color: white;
+    padding: 25px 0 25px 25px;
+    border-radius: 20px;
+    box-shadow: lightgray 2px 1px;
+    
+    .history{
+      max-height: 60vh;
+      height: 60vh;
+      overflow-y: scroll; 
+
+      .header{
+        width: 100%;
+        font-size: 26px;
+        font-weight: bold;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        margin: 0 0 10px 0;
+        border-bottom: solid lightgray 1px;
+      }
+
+      .project-history-element{
+        padding: 6px;
+        border-bottom: solid lightgray 1px;
+        color: gray;
+
+        &:hover{
+          background-color: #F5F5F5;
+        }
+
+        .status-history{
+          color: rgb(56, 56, 56);
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.content#index{
+  display:block;
+  width:60%;
+  margin: auto;
+
+  .project-info{
+    margin:0;
+    width:100%;
+  }
+}
+
+.hidden-form{
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .content{
+    flex-direction: column;
+
+    .project-info{
+      width: 100%;
+      margin: 0 0 25px 0;
+    }
+
+    .history-container{
+      width: 100%;
+    }
+  }
+
+  .content#index{
+    width: 100%;
+  }
+}

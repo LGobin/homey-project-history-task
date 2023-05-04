@@ -1,0 +1,11 @@
+<div class = "navbar">
+  <ul>
+    <li><%= link_to "Projects", :root, class: "button" %></li>
+    <% if current_user %>
+      <li class="button-right"><%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: "button"%></li>
+    <% else %>
+      <li class="button-right"><%= link_to "Sign in", :new_user_session, class: "button" %></li>
+      <li class="button-right"><%= link_to "Sign up", :new_user_registration, class: "button" %></li>
+    <% end %>
+  </ul>
+</div>

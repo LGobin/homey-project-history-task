@@ -1,0 +1,9 @@
+.history
+  .header
+    History
+  - @history_data.each do |element|
+    .project-history-element
+      - if element.is_a?(Comment)
+        = render :partial => 'comment', :locals => { comment: element }
+      - else
+        = render :partial => 'status_change', :locals => { status: element }

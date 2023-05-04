@@ -1,0 +1,9 @@
+= status.user.email + ' changed status of a project '
+-unless status.previous_status.blank?
+  %span from
+  %span.status-history
+    = status.previous_status
+%span
+  to
+%span.status-history
+  = status.next_status
