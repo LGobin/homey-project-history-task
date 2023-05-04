@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-module CreateComment
+module UpdateProject
   class EntryPoint
 
-    def initialize(params: {}, user:)
-      @action = Action.new(params, user)
+    def initialize(project_id:, params: {})
+      @action = Action.new(project_id, params)
     end
 
     def call

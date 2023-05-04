@@ -1,5 +1,5 @@
 .hidden-form
-  = form_for @project do |f|
+  = form_for @project, remote: true do |f|
     = f.text_field :name
     = f.text_area :description
     = f.text_field :next_status

@@ -3,9 +3,9 @@
 module CreateComment
   class Action < Validation
   
-    def initialize(params, user)
+    def initialize(params, user_id)
       @params = params
-      @user = user
+      @user_id = user_id
     end
 
     def call
@@ -16,11 +16,11 @@ module CreateComment
 
     private
 
-    attr_reader :params, :user
+    attr_reader :params, :user_id
 
     def comment
       @comment ||= Comment.new(comment_params) do |c|
-                     c.user = user
+                     c.user_id = user_id
                    end
     end
 

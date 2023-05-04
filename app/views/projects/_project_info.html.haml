@@ -4,16 +4,18 @@
   %div.edit-button#editBtn{type: "button"}
     %i.fa-solid.fa-pencil.fa-lg#pencil-icon
     %span#save-button Save
+#project_name_errors.inline-errors
 .project-description#description
   = @project.description
 .project-status
   Status: 
   %span.status#status 
     = @project.status
+  #project_status_errors.inline-errors
   = form_for @comment, remote: true do |f|
     .comment
       .comment-editor
         = f.text_area :content
-        #comment_content_errors
+        #comment_content_errors.inline-errors
       = f.hidden_field :project_id, value: @project.id
       = f.submit 'Post', class: 'submit-button'

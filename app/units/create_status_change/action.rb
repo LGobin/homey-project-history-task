@@ -3,29 +3,33 @@
 module CreateStatusChange
   class Action < Validation
   
-    def initialize(params, user)
-      @params = params
-      @user = user
+    def initialize(project_id, next_status, user_id)
+      @project_id = project_id
+      @next_status = next_status
+      @user_id = user_id
     end
 
     def call
-      return comment.errors unless valid_record?
-      comment.save
-      comment
+      status_change.save if valid_record?
+
+      status_change.errors
     end
 
     private
 
-    attr_reader :params, :user
+    attr_reader :project_id, :next_status, :user_id
 
-    def comment
-      @comment ||= Comment.new(comment_params) do |c|
-                     c.user = user
-                   end
+    def status_change
+      @status_change ||= StatusChange.new do |sc|
+                       sc.previous_status = project.status
+                       sc.next_status = next_status
+                       sc.project_id = project_id
+                       sc.user_id = user_id
+                     end
     end
 
-    def comment_params
-      @comment_params ||= params.permit(:content, :project_id)
+    def project
+      @project ||= Project.find(project_id)
     end
 
   end

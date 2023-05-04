@@ -3,8 +3,8 @@
 module CreateComment
   class EntryPoint
 
-    def initialize(params: {}, user:)
-      @action = Action.new(params, user)
+    def initialize(params: {}, user_id:)
+      @action = Action.new(params, user_id)
     end
 
     def call

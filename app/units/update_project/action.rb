@@ -1,32 +1,28 @@
 # frozen_string_literal: true
 
-module CreateComment
+module UpdateProject
   class Action < Validation
   
-    def initialize(params, user)
+    def initialize(project_id, params)
+      @project_id = project_id
       @params = params
-      @user = user
     end
 
     def call
-      return comment.errors unless valid_record?
+      project.save if valid_record?
 
-      comment.save
-      comment
+      project.errors
     end
 
     private
 
-    attr_reader :params, :user
+    attr_reader :params, :project_id
 
-    def comment
-      @comment ||= Comment.new(comment_params) do |c|
-                     c.user = user
+    def project
+      @project ||= Project.find(project_id) do |p|
+                     p.name = params[:name]
+                     p.description = params[:description]
                    end
-    end
-
-    def comment_params
-      @comment_params ||= params.permit(:content, :project_id)
     end
 
   end

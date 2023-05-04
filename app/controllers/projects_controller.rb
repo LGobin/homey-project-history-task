@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class ProjectsController < ApplicationController # FIX THIS
+class ProjectsController < ApplicationController
+  respond_to :js, :html
 
   def index
     @projects = Project.all
@@ -15,26 +16,21 @@ class ProjectsController < ApplicationController # FIX THIS
     @history_data = (comments + status_changes).sort_by(&:created_at).reverse
   end
 
-  def create
-
-  end
-
   def update
-    @project = Project.find(params[:id])
+    errors = UpdateProject::EntryPoint.new(project_id: params[:id], params: params[:project]).call
 
-    if @project.update(name: params[:project][:name], description: params[:project][:description])
-      flash[:notice] = "Project was successfully edited."
-    else
-      flash[:alert] = "Something went wrong."
-    end
+    sc_errors = CreateStatusChange::EntryPoint.new(project_id: params[:id],
+                                                   next_status: params[:project][:next_status], 
+                                                   user_id: current_user.id).call
+    errors.merge!(sc_errors)
 
-    status_change = StatusChange.new(project_id: @project.id, user: current_user, previous_status: @project.status, next_status: params[:project][:next_status])
-
-    unless @project.status == params[:project][:next_status]
-      unless status_change.save
-        flash[:alert] = "Status can't be blank."
+    respond_to do |format|
+      if errors.any?
+        format.js { render 'projects/show', locals: { errors: errors, project: Project.find(params[:id]) } }
+      else
+        format.js { render js: 'window.top.location.reload(true);' }
       end
     end
-    redirect_to request.referrer
   end
+
 end

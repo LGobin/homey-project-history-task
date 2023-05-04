@@ -3,8 +3,8 @@
 module CreateStatusChange
   class EntryPoint
 
-    def initialize(params: {}, user:)
-      @action = Action.new(params, user)
+    def initialize(project_id:, next_status:, user_id:)
+      @action = Action.new(project_id, next_status, user_id)
     end
 
     def call

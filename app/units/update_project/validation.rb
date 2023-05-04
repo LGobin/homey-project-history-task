@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-module CreateComment
+module UpdateProject
   class Validation
 
     include ::Validations
 
     def valid_record?
-      return false unless valid_content?
+      return false if invalid_name?
 
       true
     end
 
     private
 
-    def valid_content?
-      attribute_blank?(record: comment, attribute: :content)
+    def invalid_name?
+      attribute_blank?(record: project, attribute: :name)
     end
 
   end
