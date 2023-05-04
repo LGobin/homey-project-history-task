@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = GetProject::EntryPoint.new(project_id: params[:id]).call
     @history_data = FetchProjectHistory::EntryPoint.new(project_id: params[:id]).call
   end
 
