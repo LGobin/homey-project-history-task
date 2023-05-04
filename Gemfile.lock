@@ -267,6 +267,7 @@ GEM
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.2)
+    to_regexp (0.2.1)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -320,6 +321,7 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   stimulus-rails
   tailwindcss-rails (~> 2.0)
+  to_regexp
   turbo-rails
   tzinfo-data
   web-console

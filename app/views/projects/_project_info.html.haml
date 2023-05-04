@@ -6,7 +6,7 @@
     %span#save-button Save
 #project_name_errors.inline-errors
 .project-description#description
-  = @project.description
+  = @project.description.html_safe
 .project-status
   Status: 
   %span.status#status 

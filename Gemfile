@@ -79,7 +79,7 @@ gem "rspec"
 gem "haml"
 gem "pry"
 gem "font-awesome-sass", "~> 6.4.0"
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem "jquery-rails"
+gem "jquery-ui-rails"
 gem "sassc-rails"
-
+gem "to_regexp"
