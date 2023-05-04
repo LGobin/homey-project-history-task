@@ -2,14 +2,17 @@
 
 module UpdateProject
   class Action < Validation
-  
+    
+    SANITIZE = [[:name, 'full_sanitize'], 
+                [:description, 'script_and_style_sanitize']].freeze
+
     def initialize(project_id, params)
       @project_id = project_id
       @params = params
     end
 
     def call
-      project.save if valid_record?
+      sanitize_and_save if valid_record?
 
       project.errors
     end
@@ -23,6 +26,11 @@ module UpdateProject
                      p.name = params[:name]
                      p.description = params[:description]
                    end
+    end
+
+    def sanitize_and_save
+      ::Helpers::Sanitizer.new(record: @project, attributes: SANITIZE).sanitize!
+      project.save
     end
 
   end

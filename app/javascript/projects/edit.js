@@ -25,9 +25,9 @@ $(document).ready(function(){
   });
 
   $('#save-button').on('click', function(){
-    $('#project_name').val($('#name').html().replace("\n", ""));
-    $('#project_description').val($('#description').html().replace("\n", ""));
-    $('#project_next_status').val($('#status').html().replace("\n", ""));
+    $('#project_name').val($('#name').html());
+    $('#project_description').val($('#description').html().replaceAll("\n", "")).replaceAll("\r", "");
+    $('#project_next_status').val($('#status').html());
     $('#update-project-button').click();
   })
 });

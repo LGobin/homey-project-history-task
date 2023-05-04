@@ -2,7 +2,9 @@
 
 module CreateStatusChange
   class Action < Validation
-  
+
+    SANITIZE = [[:next_status, 'full_sanitize']]
+
     def initialize(project_id, next_status, user_id)
       @project_id = project_id
       @next_status = next_status
@@ -10,7 +12,7 @@ module CreateStatusChange
     end
 
     def call
-      status_change.save if valid_record?
+      sanitize_and_save if valid_record?
 
       status_change.errors
     end
@@ -30,6 +32,12 @@ module CreateStatusChange
 
     def project
       @project ||= Project.find(project_id)
+    end
+
+    def sanitize_and_save
+      ::Helpers::Sanitizer.new(record: @status_change, attributes: SANITIZE).sanitize!
+
+      status_change.save
     end
 
   end
