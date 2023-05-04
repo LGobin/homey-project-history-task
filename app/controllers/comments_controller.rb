@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   respond_to :js
 
   def create
-    errors = CreateComment::EntryPoint.new(params: params[:comment], user_id: current_user).call
+    errors = CreateComment::EntryPoint.new(params: params[:comment], user_id: current_user.id).call
 
     respond_to do |format|
       if errors.any?

@@ -12,7 +12,7 @@
   %span.status#status 
     = @project.status
   #project_status_errors.inline-errors
-  = form_for @comment, remote: true do |f|
+  = form_for Comment.new, remote: true do |f|
     .comment
       .comment-editor
         = f.text_area :content

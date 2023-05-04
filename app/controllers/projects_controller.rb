@@ -8,12 +8,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
     @project = Project.find(params[:id])
-    comments = @project.comments
-    status_changes = @project.status_changes
-
-    @history_data = (comments + status_changes).sort_by(&:created_at).reverse
+    @history_data = FetchProjectHistory::EntryPoint.new(project_id: params[:id]).call
   end
 
   def update
