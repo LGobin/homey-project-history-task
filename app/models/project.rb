@@ -2,8 +2,8 @@
 
 class Project < ApplicationRecord
 
-  has_many :status_changes
-  has_many :comments
+  has_many :status_changes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :name, presence: true, allow_blank: false
 
@@ -15,7 +15,7 @@ class Project < ApplicationRecord
     status_changes.last.next_status
   end
 
-  def contributors # FIX THIS
+  def contributors
     return nil if comments.pluck(:user_id).blank? && status_changes.pluck(:user_id).blank?
 
     User.find((comments.pluck(:user_id) + status_changes.pluck(:user_id)).uniq).count
