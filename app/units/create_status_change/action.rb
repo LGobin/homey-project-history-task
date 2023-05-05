@@ -35,7 +35,7 @@ module CreateStatusChange
     end
 
     def sanitize_and_save
-      ::Helpers::Sanitizer.new(record: @status_change, attributes: SANITIZE).sanitize!
+      ::Helpers::Sanitizer.new(record: status_change, attributes: SANITIZE).sanitize!
 
       status_change.save
     end

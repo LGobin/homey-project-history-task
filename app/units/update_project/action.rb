@@ -29,7 +29,7 @@ module UpdateProject
     end
 
     def sanitize_and_save
-      ::Helpers::Sanitizer.new(record: @project, attributes: SANITIZE).sanitize!
+      ::Helpers::Sanitizer.new(record: project, attributes: SANITIZE).sanitize!
       project.save
     end
 

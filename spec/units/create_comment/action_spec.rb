@@ -33,17 +33,12 @@ RSpec.describe CreateComment::Action, type: :action do
                                     .permit(:content, :project_id)
       end
 
-      before do
-        allow_any_instance_of(ActionController::Parameters).to receive(:permit)
-                                                           .and_return(params)
-      end
-
       it 'does not create a comment' do
         expect { subject }.not_to change { Comment.count }
       end
 
       it 'returns an error object' do
-        expect(subject).to be_a(ActiveModel::Errors)
+        expect(subject[:content]).to eq(["Can't be blank"])
       end
     end
   end
