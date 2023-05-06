@@ -19,13 +19,16 @@ module UpdateProject
 
     private
 
-    attr_reader :params, :project_id
+    attr_reader :project_id, :params
 
     def project
-      @project ||= Project.find(project_id) do |p|
-                     p.name = params[:name]
-                     p.description = params[:description]
-                   end
+      @project ||= set_project_attributes(Project.find(project_id))
+    end
+
+    def set_project_attributes(project)
+      project.assign_attributes(name: params[:name], description: params[:description])
+
+      project
     end
 
     def sanitize_and_save
