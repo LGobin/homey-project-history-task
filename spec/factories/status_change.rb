@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :status_change do
-    previous_status { Faker::Lorem.words(number: rand(1..5)) }
-    next_status  { Faker::Lorem.words(number: rand(1..5)) }
+    previous_status { Faker::Lorem.sentence(word_count: 3) }
+    next_status  { Faker::Lorem.sentence(word_count: 4) }
   end
 end
