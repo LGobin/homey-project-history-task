@@ -2,6 +2,6 @@
 
 FactoryBot.define do
     factory :comment do
-      content { Faker::Lorem.words(number: rand(2..100)) }
+      content { Faker::Lorem.paragraph(sentence_count: 5) }
     end
   end

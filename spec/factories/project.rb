@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :project do
-    name { Faker::Lorem.words(number: rand(2..10)) }
-    description  { Faker::Lorem.words(number: rand(2..100)) }
+    name { Faker::Lorem.sentence(word_count: 5) }
+    description  { Faker::Lorem.paragraph(sentence_count: 5) }
   end
 end

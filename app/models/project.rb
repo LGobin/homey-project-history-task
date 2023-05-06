@@ -16,8 +16,14 @@ class Project < ApplicationRecord
   end
 
   def contributors
-    return nil if comments.pluck(:user_id).blank? && status_changes.pluck(:user_id).blank?
+    return nil if user_ids.blank?
 
-    User.find((comments.pluck(:user_id) + status_changes.pluck(:user_id)).uniq).count
+    user_ids.count
+  end
+
+  private
+
+  def user_ids
+    (comments.pluck(:user_id) + status_changes.pluck(:user_id)).uniq
   end
 end
