@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
   root "projects#index"
   get "projects/:id/history", to: "projects#show", as: "project_history"
-  resources :comments
-  resources :projects
+  resources :projects, only: :update
+  resources :comments, only: :create
 end
