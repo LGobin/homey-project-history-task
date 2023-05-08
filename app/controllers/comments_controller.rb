@@ -4,11 +4,13 @@ class CommentsController < ApplicationController
   respond_to :js
 
   def create
-    errors = CreateComment::EntryPoint.new(params: params[:comment], user_id: current_user.id).call
+    comment = CreateComment::EntryPoint.new(params: params[:comment], user_id: current_user.id).call
 
     respond_to do |format|
-      if errors.any?
-        format.js { render 'projects/show', locals: { errors: errors } }
+      if comment.errors.any?
+        format.js { render 'projects/show', locals: { project_errors: nil,
+                                                      status_errors: nil,
+                                                      comment_errors: comment.errors } }
       else
         format.js { render js: 'window.top.location.reload(true);' }
       end

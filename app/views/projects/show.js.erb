@@ -1,10 +1,12 @@
-<% if errors[:name].any? %>
+<% if project_errors.present? %>
   $("#name").html("<%= project.name %>");
-  $("#project_name_errors").html("<%= errors[:name].join(', ') %>");
+  $("#project_name_errors").html("<%= project_errors[:name].join(', ') %>");
+  $('#pencil-icon').click();
 <% end %>
-<% if errors[:next_status].any? %>
+<% if status_errors.present? %>
   $("#status").html("<%= project.status %>");
-  $("#project_status_errors").html("<%= errors[:next_status].join(', ') %>");
+  $("#project_status_errors").html("<%= status_errors[:next_status].join(', ') %>");
 <% end %>
-
-$("#comment_content_errors").html("<%= errors[:content].join(', ') %>");
+<% if comment_errors.present? %>
+  $("#comment_content_errors").html("<%= comment_errors[:content].join(', ') %>");
+<% end %>

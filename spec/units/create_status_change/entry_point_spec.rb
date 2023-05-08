@@ -10,8 +10,8 @@ RSpec.describe CreateStatusChange::EntryPoint, type: :service do
 
     context "when the action is successful" do
       it "calls the action and returns the ActiveModel errors" do
-        expect_any_instance_of(CreateStatusChange::Action).to receive(:call).and_return(ActiveModel::Errors)
-        expect(subject).to eq(ActiveModel::Errors)
+        expect_any_instance_of(CreateStatusChange::Action).to receive(:call).and_return(StatusChange)
+        expect(subject).to eq(StatusChange)
       end
     end
 

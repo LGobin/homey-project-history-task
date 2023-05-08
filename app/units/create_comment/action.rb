@@ -11,7 +11,7 @@ module CreateComment
     def call
       comment.save if valid_record?
 
-      comment.errors
+      comment
     end
 
     private

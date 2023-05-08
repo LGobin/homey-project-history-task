@@ -22,8 +22,9 @@ RSpec.describe CreateComment::Action, type: :action do
         expect{ subject }.to change { Comment.count }.by(1)
       end
 
-      it 'returns an empty error object' do
-        expect(subject).to be_empty
+      it 'returns a comment without errors' do
+        expect(subject).to be_a(Comment)
+        expect(subject.errors).to be_empty
       end
     end
 
@@ -37,8 +38,9 @@ RSpec.describe CreateComment::Action, type: :action do
         expect { subject }.not_to change { Comment.count }
       end
 
-      it 'returns an error object' do
-        expect(subject[:content]).to eq(["Can't be blank"])
+      it 'returns a comment with errors' do
+        expect(subject).to be_a(Comment)
+        expect(subject.errors[:content]).to eq(["Can't be blank"])
       end
     end
   end
