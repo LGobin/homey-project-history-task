@@ -1,6 +1,7 @@
 <% if project_errors.present? %>
   $("#name").html("<%= project.name %>");
   $("#project_name_errors").html("<%= project_errors[:name].join(', ') %>");
+  $('#pencil-icon').click();
 <% end %>
 <% if status_errors.present? %>
   $("#status").html("<%= project.status %>");
