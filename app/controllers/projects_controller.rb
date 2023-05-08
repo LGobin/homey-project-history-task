@@ -13,16 +13,18 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    errors = UpdateProject::EntryPoint.new(project_id: params[:id], params: params[:project]).call
+    project = UpdateProject::EntryPoint.new(project_id: params[:id], params: params[:project]).call
 
-    sc_errors = CreateStatusChange::EntryPoint.new(project_id: params[:id],
+    status_change = CreateStatusChange::EntryPoint.new(project_id: params[:id],
                                                    next_status: params[:project][:next_status], 
                                                    user_id: current_user.id).call
-    errors.merge!(sc_errors)
-
+    
     respond_to do |format|
-      if errors.any?
-        format.js { render 'projects/show', locals: { errors: errors, project: Project.find(params[:id]) } }
+      if project.errors.any? || status_change.errors.any?
+        format.js { render 'projects/show', locals: { project_errors: project.errors,
+                                                      status_errors: status_change.errors,
+                                                      comment_errors: nil,
+                                                      project: project } }
       else
         format.js { render js: 'window.top.location.reload(true);' }
       end

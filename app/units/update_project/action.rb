@@ -14,7 +14,7 @@ module UpdateProject
     def call
       sanitize_and_save if valid_record?
 
-      project.errors
+      project
     end
 
     private

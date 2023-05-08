@@ -14,7 +14,7 @@ module CreateStatusChange
     def call
       sanitize_and_save if valid_record?
 
-      status_change.errors
+      status_change
     end
 
     private

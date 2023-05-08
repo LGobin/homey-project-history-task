@@ -13,8 +13,8 @@ RSpec.describe UpdateProject::EntryPoint do
     context "when the action is successful" do
 
       it "calls the action and returns the comment" do
-        expect_any_instance_of(UpdateProject::Action).to receive(:call).and_return(project.errors)
-        expect(subject).to eq(project.errors)
+        expect_any_instance_of(UpdateProject::Action).to receive(:call).and_return(project)
+        expect(subject).to eq(project)
       end
     end
 

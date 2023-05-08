@@ -11,8 +11,8 @@ RSpec.describe CreateComment::EntryPoint, type: :service do
 
     context "when the action is successful" do
       it "calls the action and returns the comment" do
-        expect_any_instance_of(CreateComment::Action).to receive(:call).and_return(comment.errors)
-        expect(subject).to eq(comment.errors)
+        expect_any_instance_of(CreateComment::Action).to receive(:call).and_return(comment)
+        expect(subject).to eq(comment)
       end
     end
 

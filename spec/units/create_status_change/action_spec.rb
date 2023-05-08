@@ -15,8 +15,9 @@ RSpec.describe CreateStatusChange::Action, type: :action do
         expect{ subject }.to change { StatusChange.count }.by(1)
       end
 
-      it 'returns an empty error object' do
-        expect(subject).to be_empty
+      it 'returns a status_change without errors' do
+        expect(subject).to be_a(StatusChange)
+        expect(subject.errors).to be_empty
       end
 
       context 'when next_status has HTML tags' do
@@ -36,8 +37,9 @@ RSpec.describe CreateStatusChange::Action, type: :action do
         expect { subject }.not_to change { StatusChange.count }
       end
 
-      it 'returns an error object' do
-        expect(subject).to be_a(ActiveModel::Errors)
+      it 'returns a status_change with errors' do
+        expect(subject).to be_a(StatusChange)
+        expect(subject.errors[:next_status]).to eq(["Can't be blank"])
       end
     end
   end
