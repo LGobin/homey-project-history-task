@@ -24,8 +24,16 @@ Database: PostgreSQL
 ### Setup
 
 1. clone the project locally
-
 2. run `bundle install`
+3. setup database with `bundle exec rails db:create db:migrate`
+4. you can seed your databse with `bundle exec rails db:seed`
+5. start rails server by running `bundle exec rails server`
 
-* How to run the test suite
+If you seeded your database you can login with test user using
+* email: `test@mail.com`
+* password `123456`
+
+### RSpec
+
+Since there are not that many specs, you can simply run everything using `bundle exec rspec` or `bundle exec rspec spec`
 
