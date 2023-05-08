@@ -9,6 +9,8 @@ class Project < ApplicationRecord
 
   attr_accessor :next_status
 
+  scope :older_first, -> { order('created_at ASC') }
+
   def status
     return nil if status_changes.empty?
 

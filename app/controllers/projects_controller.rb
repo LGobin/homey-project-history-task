@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   respond_to :js, :html
 
   def index
-    @projects = Project.all
+    @projects = Project.older_first
   end
 
   def show

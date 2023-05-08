@@ -15,6 +15,16 @@ RSpec.describe Project, type: :model do
     it { should validate_presence_of(:name) }
   end
 
+  describe '.older_first' do
+    let!(:project1) { create(:project, created_at: 1.day.ago) }
+    let!(:project2) { create(:project, created_at: 2.days.ago) }
+    let!(:project3) { create(:project, created_at: 3.days.ago) }
+
+    it 'returns projects in ascending order by creation date' do
+      expect(Project.older_first).to eq([project3, project2, project1])
+    end
+  end
+
   describe 'instance methods' do
     describe '#status' do
       context 'when no status changes exist' do
