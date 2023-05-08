@@ -1,24 +1,31 @@
-# README
+# Homey Project History Task
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## About the application
 
-Things you may want to cover:
+Simple application serving as a project management tool here user can edit project, change its status and leave a comment.
 
-* Ruby version
+## How to use
+In order to access projects user must sign in or create a new account. On successful authorization, user will be redirected to the root page where all the available projects are listed.
 
-* System dependencies
+There is no way outside of the console to create a new project.
 
-* Configuration
+In order to be able to edit a project or leave a comment click on the the name of available project. By clcking on a pencil icon, you will be able to edit project's name, description and status.
 
-* Database creation
+Status changes and comments posted will be listed in the project history section on the right side in reverse-chronological order meaning newest comments/status changes will be listed first.
+    
+## Technicalities
 
-* Database initialization
+Ruby version: 3.1.2
+
+Rails version: 7.0.4.3
+
+Database: PostgreSQL
+
+### Setup
+
+1. clone the project locally
+
+2. run `bundle install`
 
 * How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
