@@ -2,7 +2,6 @@
 
 module UpdateProject
   class EntryPoint
-
     def initialize(project_id:, params: {})
       @action = Action.new(project_id, params)
     end
@@ -11,8 +10,8 @@ module UpdateProject
       action.call
     end
 
-    attr_accessor :action
+    private
 
+    attr_accessor :action
   end
 end
-  

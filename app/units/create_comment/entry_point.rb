@@ -2,8 +2,7 @@
 
 module CreateComment
   class EntryPoint
-
-    def initialize(params: {}, user_id:)
+    def initialize(user_id:, params: {})
       @action = Action.new(params, user_id)
     end
 
@@ -11,8 +10,8 @@ module CreateComment
       action.call
     end
 
-    attr_accessor :action
+    private
 
+    attr_accessor :action
   end
 end
-  

@@ -2,7 +2,6 @@
 
 module CreateStatusChange
   class Validation
-
     include ::Validations
 
     def valid_record?
@@ -21,6 +20,5 @@ module CreateStatusChange
     def status_not_changed?
       status_change.next_status == status_change.previous_status
     end
-
   end
 end

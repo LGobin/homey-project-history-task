@@ -2,7 +2,6 @@
 
 module CreateComment
   class Validation
-
     include ::Validations
 
     def valid_record?
@@ -16,6 +15,5 @@ module CreateComment
     def invalid_content?
       attribute_blank?(record: comment, attribute: :content)
     end
-
   end
 end

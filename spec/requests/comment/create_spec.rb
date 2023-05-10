@@ -20,9 +20,9 @@ RSpec.describe CommentsController, type: :request do
 
       context 'with valid attributes' do
         it 'creates a new comment and renders js to reload page' do
-          expect {
+          expect do
             post comments_path(format: :js), params: valid_attributes
-          }.to change(Comment, :count).by(1)
+          end.to change(Comment, :count).by(1)
 
           expect(response.content_type).to eq('text/javascript; charset=utf-8')
           expect(response.body).to include('window.top.location.reload(true);')
@@ -33,9 +33,9 @@ RSpec.describe CommentsController, type: :request do
         let(:invalid_attributes) { { comment: { content: '', project_id: project.id } } }
 
         it 'does not create a new comment and renders js to show errors' do
-          expect {
+          expect do
             post comments_path(format: :js), params: invalid_attributes
-          }.not_to change(Comment, :count)
+          end.not_to change(Comment, :count)
 
           expect(response.content_type).to eq('text/javascript; charset=utf-8')
         end

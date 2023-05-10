@@ -10,9 +10,8 @@ RSpec.describe CreateStatusChange::Action, type: :action do
   describe '#call' do
     subject { described_class.new(project.id, next_status, user.id).call }
     context 'when status_change is valid' do
-
       it 'creates a status_change' do
-        expect{ subject }.to change { StatusChange.count }.by(1)
+        expect { subject }.to change { StatusChange.count }.by(1)
       end
 
       it 'returns a status_change without errors' do
@@ -25,7 +24,7 @@ RSpec.describe CreateStatusChange::Action, type: :action do
 
         it 'filters them out' do
           subject
-          expect(StatusChange.last).to have_attributes(:next_status => "This is a strong text")
+          expect(StatusChange.last).to have_attributes(next_status: 'This is a strong text')
         end
       end
     end
@@ -34,7 +33,7 @@ RSpec.describe CreateStatusChange::Action, type: :action do
       let(:next_status) { '' }
 
       it 'does not create a status_change' do
-        expect { subject }.not_to change { StatusChange.count }
+        expect { subject }.not_to(change { StatusChange.count })
       end
 
       it 'returns a status_change with errors' do

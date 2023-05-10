@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-
   it { should respond_to(:id) }
   it { should respond_to(:content) }
   it { should respond_to(:project_id) }
@@ -24,7 +23,7 @@ RSpec.describe Comment, type: :model do
 
   describe 'factory' do
     it 'has a valid factory' do
-      comment = FactoryBot.build(:comment, project: project, user: user)
+      comment = FactoryBot.build(:comment, project:, user:)
       expect(comment).to be_valid
     end
   end

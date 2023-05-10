@@ -2,8 +2,7 @@
 
 module UpdateProject
   class Action < Validation
-    
-    SANITIZE = [[:name, 'full_sanitize'], 
+    SANITIZE = [[:name, 'full_sanitize'],
                 [:description, 'script_and_style_sanitize']].freeze
 
     def initialize(project_id, params)
@@ -22,10 +21,10 @@ module UpdateProject
     attr_reader :project_id, :params
 
     def project
-      @project ||= set_project_attributes(Project.find(project_id))
+      @project ||= assign_attributes(Project.find(project_id))
     end
 
-    def set_project_attributes(project)
+    def assign_attributes(project)
       project.assign_attributes(name: params[:name], description: params[:description])
 
       project
@@ -35,7 +34,5 @@ module UpdateProject
       ::Helpers::Sanitizer.new(record: project, attributes: SANITIZE).sanitize!
       project.save
     end
-
   end
 end
-  

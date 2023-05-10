@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe UpdateProject::Action do
   subject { described_class.new(project.id, params).call }
   let(:project) { FactoryBot.create(:project) }
-  let(:params) { { name: name, description: description } }
+  let(:params) { { name:, description: } }
   let(:description) { '<script>alert("hello");</script><strong> Strong Text </strong>' }
 
   describe '#call' do
@@ -19,12 +19,12 @@ RSpec.describe UpdateProject::Action do
 
       it 'filters out HTML tags from name' do
         subject
-        expect(Project.find(project.id)).to have_attributes(:name => 'New Project Name')
+        expect(Project.find(project.id)).to have_attributes(name: 'New Project Name')
       end
 
       it 'filters out script and style tags from name' do
         subject
-        expect(Project.find(project.id)).to have_attributes(:description => '<strong> Strong Text </strong>')
+        expect(Project.find(project.id)).to have_attributes(description: '<strong> Strong Text </strong>')
       end
     end
 

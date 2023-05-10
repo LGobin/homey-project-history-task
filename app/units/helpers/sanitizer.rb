@@ -12,9 +12,9 @@ module Helpers
     end
 
     def sanitize!
-      attributes.each { |attr| send(attr.last, record: record, attribute: attr.first) }
+      attributes.each { |attr| send(attr.last, record:, attribute: attr.first) }
 
-      return record
+      record
     end
 
     attr_accessor :record, :attributes

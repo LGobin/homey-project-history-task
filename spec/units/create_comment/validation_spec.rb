@@ -6,7 +6,7 @@ RSpec.describe CreateComment::Validation do
   let(:project) { FactoryBot.create(:project) }
   let(:user) { FactoryBot.create(:user) }
   let(:params) do
-    ActionController::Parameters.new(content: content, project_id: project.id)
+    ActionController::Parameters.new(content:, project_id: project.id)
                                 .permit(:content, :project_id)
   end
 

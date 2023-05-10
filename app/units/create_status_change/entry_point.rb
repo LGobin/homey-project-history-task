@@ -2,7 +2,6 @@
 
 module CreateStatusChange
   class EntryPoint
-
     def initialize(project_id:, next_status:, user_id:)
       @action = Action.new(project_id, next_status, user_id)
     end
@@ -11,8 +10,8 @@ module CreateStatusChange
       action.call
     end
 
-    attr_accessor :action
+    private
 
+    attr_accessor :action
   end
 end
-  

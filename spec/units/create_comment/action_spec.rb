@@ -19,7 +19,7 @@ RSpec.describe CreateComment::Action, type: :action do
       end
 
       it 'creates a comment' do
-        expect{ subject }.to change { Comment.count }.by(1)
+        expect { subject }.to change { Comment.count }.by(1)
       end
 
       it 'returns a comment without errors' do
@@ -35,7 +35,7 @@ RSpec.describe CreateComment::Action, type: :action do
       end
 
       it 'does not create a comment' do
-        expect { subject }.not_to change { Comment.count }
+        expect { subject }.not_to(change { Comment.count })
       end
 
       it 'returns a comment with errors' do

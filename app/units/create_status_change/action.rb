@@ -2,8 +2,7 @@
 
 module CreateStatusChange
   class Action < Validation
-
-    SANITIZE = [[:next_status, 'full_sanitize']]
+    SANITIZE = [[:next_status, 'full_sanitize']].freeze
 
     def initialize(project_id, next_status, user_id)
       @project_id = project_id
@@ -23,11 +22,11 @@ module CreateStatusChange
 
     def status_change
       @status_change ||= StatusChange.new do |sc|
-                       sc.previous_status = project.status
-                       sc.next_status = next_status
-                       sc.project_id = project_id
-                       sc.user_id = user_id
-                     end
+        sc.previous_status = project.status
+        sc.next_status = next_status
+        sc.project_id = project_id
+        sc.user_id = user_id
+      end
     end
 
     def project
@@ -39,7 +38,5 @@ module CreateStatusChange
 
       status_change.save
     end
-
   end
 end
-  

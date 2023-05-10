@@ -2,7 +2,6 @@
 
 module UpdateProject
   class Validation
-
     include ::Validations
 
     def valid_record?
@@ -16,6 +15,5 @@ module UpdateProject
     def invalid_name?
       attribute_blank?(record: project, attribute: :name)
     end
-
   end
 end

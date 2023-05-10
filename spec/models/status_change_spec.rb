@@ -3,13 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe StatusChange, type: :model do
-
   it { should respond_to(:id) }
   it { should respond_to(:previous_status) }
   it { should respond_to(:next_status) }
   it { should respond_to(:project_id) }
   it { should respond_to(:user_id) }
-  
+
   let(:project) { FactoryBot.create(:project) }
   let(:user) { FactoryBot.create(:user) }
 
@@ -25,7 +24,7 @@ RSpec.describe StatusChange, type: :model do
 
   describe 'factory' do
     it 'has a valid factory' do
-      status_change = FactoryBot.build(:status_change, project: project, user: user)
+      status_change = FactoryBot.build(:status_change, project:, user:)
       expect(status_change).to be_valid
     end
   end

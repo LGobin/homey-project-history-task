@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Project < ApplicationRecord
-
   has_many :status_changes, dependent: :destroy
   has_many :comments, dependent: :destroy
 

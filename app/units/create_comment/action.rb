@@ -2,7 +2,6 @@
 
 module CreateComment
   class Action < Validation
-  
     def initialize(params, user_id)
       @params = params
       @user_id = user_id
@@ -20,14 +19,12 @@ module CreateComment
 
     def comment
       @comment ||= Comment.new(comment_params) do |c|
-                     c.user_id = user_id
-                   end
+        c.user_id = user_id
+      end
     end
 
     def comment_params
       @comment_params ||= params.permit(:content, :project_id)
     end
-
   end
 end
-  

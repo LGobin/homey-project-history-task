@@ -6,11 +6,11 @@ RSpec.describe FetchProjectHistory::EntryPoint do
   let(:project) { FactoryBot.create(:project) }
   let(:action) { subject.action }
 
-  describe "#call" do
+  describe '#call' do
     subject { described_class.new(project_id: project.id) }
 
-    it "calls #call on the action" do
-      expect(action).to receive(:call)
+    it 'calls #call on the action' do
+      expect_any_instance_of(FetchProjectHistory::Action).to receive(:call)
       subject.call
     end
   end

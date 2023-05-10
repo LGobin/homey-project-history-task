@@ -35,8 +35,8 @@ RSpec.describe Project, type: :model do
 
       context 'when status changes exist' do
         it 'returns the latest next_status' do
-          FactoryBot.create(:status_change, project: project, next_status: 'in_progress', user: user)
-          FactoryBot.create(:status_change, project: project, next_status: 'completed', user: user)
+          FactoryBot.create(:status_change, project:, next_status: 'in_progress', user:)
+          FactoryBot.create(:status_change, project:, next_status: 'completed', user:)
           expect(project.status).to eq('completed')
         end
       end
@@ -50,13 +50,13 @@ RSpec.describe Project, type: :model do
       end
 
       context 'when comments or status changes exist' do
-        let(:contributor_1) { FactoryBot.create(:user) }
-        let(:contributor_2) { FactoryBot.create(:user) }
+        let(:contributor1) { FactoryBot.create(:user) }
+        let(:contributor2) { FactoryBot.create(:user) }
 
         before do
-          FactoryBot.create(:comment, project: project, user: contributor_1)
-          FactoryBot.create(:status_change, project: project, user: contributor_2)
-          FactoryBot.create(:comment, project: project, user: contributor_2)
+          FactoryBot.create(:comment, project:, user: contributor1)
+          FactoryBot.create(:status_change, project:, user: contributor2)
+          FactoryBot.create(:comment, project:, user: contributor2)
         end
 
         it 'returns the number of unique contributors' do

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Validations
-  
   def attribute_blank?(record:, attribute:)
     return unless record[attribute].blank?
 

@@ -6,7 +6,7 @@ RSpec.describe UpdateProject::Validation do
   let(:project) { FactoryBot.create(:project) }
   let(:user) { FactoryBot.create(:user) }
   let(:params) do
-    { name: name,
+    { name:,
       description: '<script>alert("hello");</script><strong> Strong Text </strong>' }
   end
 
